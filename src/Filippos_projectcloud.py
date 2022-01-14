@@ -1,5 +1,4 @@
-,
-,
+
 # -*- coding: utf-8 -*-
 """
 Created on Fri Dec 10 13:51:53 2021
@@ -90,6 +89,7 @@ dfDBase.isna().sum()
 ## Data Analysis
 ##dfDBase.corr()
 ##print('Correlation between intercluster   and interdatacenter is : {}'.format(round(dfDBase.corr()['intercluster']['interdatacenter'],3)))
+
 #Correlation matrix with colorful indicators
 plt.figure(figsize = (10,6))
 sns.heatmap(df.corr(),annot=True,square=True,cmap='RdBu',vmax=1,vmin=-1)
@@ -123,9 +123,7 @@ plt.grid()
 plt.show()
 
 ## plot showing the records per Minute 
-minutes  =[minute for minute , dfDBase in dfDBase[(dfDBase['Day'] == 1) & (dfDBase['Hour']==10)].groupby('Minute')]
-#hours =[hour for hour, df in dfDBase.groupby('Hour')]
-#plt.plot(hours,df2[(df2['Day'] == 1)].groupby(['Hour']).size())                                         
+minutes  =[minute for minute , dfDBase in dfDBase[(dfDBase['Day'] == 1) & (dfDBase['Hour']==10)].groupby('Minute')]                                      
 plt.plot(minutes,dfDBase[(dfDBase['Day'] == 1) & (dfDBase['Hour']==10)].groupby(['Minute']).size())  
 #df2.groupby(['Hour']).size()
 plt.xticks(minutes)
@@ -159,7 +157,8 @@ plt.show()
 
 import warnings
 warnings.filterwarnings('ignore')
-## Showing pdf ,CDF for intercluster for the DAY 1 
+
+## Showing PDF, CDF for intercluster for the DAY 1 
 sns.set_style("whitegrid")
 interdatacenter_plot = sns.FacetGrid(dfDBaseSample, hue="intercluster", height=6)
 interdatacenter_plot.map(sns.distplot, 'Hour').add_legend()
@@ -168,6 +167,7 @@ plt.ylabel("PDF Density")
 plt.title("Probability density function In intercluster In DB Server")
 plt.show()
 
+## Showing PDF, CDF for interdatacenter for the DAY 1 
 sns.set_style("whitegrid")
 interdatacenter_plot = sns.FacetGrid(dfDBaseSample, hue="interdatacenter", height=6)
 interdatacenter_plot.map(sns.distplot, 'Hour').add_legend()
@@ -272,7 +272,7 @@ c=tempgraph['count'].sum()
 d=tempSample['count'].sum()
 print(' The top 10 source host have total requests: ',c   ,'\n Total Requests from source to Dest. Host are :',d )
 tempgraph.head(9)
-##
+
 ##sns.regplot(x = "srchost", y="deshost", data=tempSample, ci=65,scatter=False, scatter_kws={"alpha": 0.2})
 sns.lineplot(x = "srchost", y="deshost", data=tempgraph,)
 plt.ylabel("Dest. Host")
@@ -401,6 +401,7 @@ plt.show()
 ###             HADOOP 
 #################################################################
 
+# Loading dat from Cluster C
 df_all_list = []
 folders = glob('C:/Users/Filippos/Desktop/Master/CSC8634-Cloud/data/CLUSTER C')
 
@@ -664,6 +665,7 @@ import numpy as np
 from sklearn.metrics import mean_squared_error
 arma_rmse = np.sqrt(mean_squared_error(test["Hits"].values, y_pred_df["Predictions"]))
 print("SARIMA RMSE: ",arma_rmse)
+
 
 plt.plot(train, color = 'black', label = 'Training Set')
 plt.plot(test, color = 'red', label = 'Testing Set')
