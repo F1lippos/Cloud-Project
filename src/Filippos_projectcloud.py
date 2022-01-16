@@ -195,7 +195,7 @@ for i, x in enumerate(list(hab.columns)[:-1]):
    plt.xlabel(x)
    plt.ylabel('PDF/CDF')
    
-   dfDBaseSample = dfDBase[(dfDBase['Day'] == 1)  ]
+dfDBaseSample = dfDBase[(dfDBase['Day'] == 1)  ]
 a=dfDBaseSample['srcrank'].nunique()
 b= dfDBaseSample['desrank'].nunique()
 c=dfDBaseSample['srpod'].nunique()
@@ -212,6 +212,7 @@ dfDBaseSampleALLcol = handle_non_numerical_data(dfDBaseSample)
 dfDBaseSampleALLcol.dtypes
 
 hab =dfDBaseSampleALLcol[['srcrank','desrank','srpod','despod', 'Minute']]
+
 plt.figure(figsize=(20,5))
 for i, x in enumerate(list(hab.columns)[:-1]):
   
@@ -274,10 +275,12 @@ print(' The top 10 source host have total requests: ',c   ,'\n Total Requests fr
 tempgraph.head(9)
 
 ##sns.regplot(x = "srchost", y="deshost", data=tempSample, ci=65,scatter=False, scatter_kws={"alpha": 0.2})
-sns.lineplot(x = "srchost", y="deshost", data=tempgraph,)
+sns.lineplot(x = "srchost", y="count", data=tempgraph,)
 plt.ylabel("Dest. Host")
 plt.xlabel('source Host')
 plt.title('Total traffic between these sources in DB Server')
+
+
 
 ##  MODEL AND EVALUATION For Database server
 # visualize the data
