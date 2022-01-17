@@ -176,6 +176,7 @@ plt.ylabel("PDF Density")
 plt.title("Probability density function in interdatacenter In DB Server")
 plt.show()
 
+#PDF vs CDF for Database Server Activity
 data_yes = dfDBaseSample.loc[dfDBaseSample["interdatacenter"] == 1];
 data_no = dfDBaseSample.loc[dfDBaseSample["interdatacenter"] == 0];
 hab =dfDBaseSample[['intercluster','interdatacenter','packet','Hour', 'Minute']]
@@ -211,9 +212,11 @@ dfDBaseSample=dfDBaseSample.drop(columns=['converted_time' ])
 dfDBaseSampleALLcol = handle_non_numerical_data(dfDBaseSample)
 dfDBaseSampleALLcol.dtypes
 
+# Database Server Activity PDF/CDF
 hab =dfDBaseSampleALLcol[['srcrank','desrank','srpod','despod', 'Minute']]
 
 plt.figure(figsize=(20,5))
+
 for i, x in enumerate(list(hab.columns)[:-1]):
   
     plt.subplot(1, 6, i+1)
@@ -274,6 +277,8 @@ d=tempSample['count'].sum()
 print(' The top 10 source host have total requests: ',c   ,'\n Total Requests from source to Dest. Host are :',d )
 tempgraph.head(9)
 
+
+# Total traffic between these sources in DB Server
 ##sns.regplot(x = "srchost", y="deshost", data=tempSample, ci=65,scatter=False, scatter_kws={"alpha": 0.2})
 sns.lineplot(x = "srchost", y="count", data=tempgraph,)
 plt.ylabel("Dest. Host")
@@ -494,7 +499,7 @@ labels = ['inter cluster', 'intra cluster' ]
 #define Seaborn color palette to use
 colors = sns.color_palette('pastel')[0:2]
 #create pie chart
-plt.title('Traffic  in Gbps  in  cluster -Hadoop Server')
+plt.title('Traffic  in Gbps  in cluster -Hadoop Server')
 plt.pie(y, labels = labels  ,colors = colors, autopct='%.0f%%')
 plt.show()
 
