@@ -327,8 +327,8 @@ models.append(('CART', DecisionTreeClassifier()))
 models.append(('RFC', RandomForestClassifier(criterion = 'entropy', random_state = 42)))
 models.append(('NB', GaussianNB()))
 #models.append(('SVM', SVC(gamma='auto')))
-# evaluate each model in turn
 
+# evaluate and run each model in turn
 import warnings
 warnings.filterwarnings('ignore')
 print (' 7 Models are  processing ...')
@@ -409,7 +409,7 @@ plt.show()
 ###             HADOOP 
 #################################################################
 
-# Loading dat from Cluster C
+# Loading data from Cluster C
 df_all_list = []
 folders = glob('C:/Users/Filippos/Desktop/Master/CSC8634-Cloud/data/CLUSTER C')
 
