@@ -44,7 +44,7 @@ def handle_non_numerical_data(df):
 ###             DataBase 
 #################################################################
 
-## Data Input from cluster A. Database folder
+## Loading data from cluster A. Database folder
 df_all_list = []
 folders = glob('C:/Users/Filippos/Desktop/Master/CSC8634-Cloud/data/cluster a')
 folders = [s for s in folders if "csv" not in s]
@@ -409,7 +409,7 @@ plt.show()
 ###             HADOOP 
 #################################################################
 
-# Loading data from Cluster C
+# Loading data from Cluster C. Database folder
 df_all_list = []
 folders = glob('C:/Users/Filippos/Desktop/Master/CSC8634-Cloud/data/CLUSTER C')
 
@@ -624,6 +624,7 @@ ARMAmodel = SARIMAX(y, order = (5, 1, 1))
 ARMAmodel = ARMAmodel.fit()
 print ('Model process Completed in ')
 
+## ARMA
 y_pred = ARMAmodel.get_forecast(len(test.index))
 y_pred_df = y_pred.conf_int(alpha = 0.05)
 y_pred_df["Predictions"] = ARMAmodel.predict(start = y_pred_df.index[0], end = y_pred_df.index[-1])
@@ -638,6 +639,7 @@ from sklearn.metrics import mean_squared_error
 arma_rmse = np.sqrt(mean_squared_error(test["Hits"].values, y_pred_df["Predictions"]))
 print("ARMA RMSE: ",arma_rmse)
 
+## ARIMA
 from statsmodels.tsa.arima.model import ARIMA
 ARIMAmodel = ARIMA(y, order = (2,1, 1))
 ARIMAmodel = ARIMAmodel.fit()
